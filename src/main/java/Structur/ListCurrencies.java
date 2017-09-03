@@ -8,8 +8,8 @@ import java.util.List;
  */
 public class ListCurrencies {
 
-    private static int indexCurrenciesList = -1;
-    private static List currenciesList = new ArrayList<String>();
+    private static  int indexCurrenciesList = -1;
+    private static volatile  List currenciesList = new ArrayList<String>();
 
     public static void addCurrenciesList(List<String> List){
         currenciesList = List;
@@ -22,7 +22,7 @@ public class ListCurrencies {
 
         indexCurrenciesList++;
 
-        if(indexCurrenciesList<currenciesList.size()){
+        if(indexCurrenciesList>currenciesList.size()-1){
             indexCurrenciesList = 0;
         }
 

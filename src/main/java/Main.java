@@ -1,27 +1,30 @@
 import ApiBittrex.ApiBittrex;
+import Flows.Flows;
 import InputFile.ReadCurrenciesFile;
 import Inquire.Inquire;
 import ParseResult.ParseResult;
+import Structur.ListCurrencies;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
-    public static void main(String... main) throws IOException {
+    public static void main(String... main) throws IOException, InterruptedException {
         BufferedReader reader = new BufferedReader( new InputStreamReader (System.in));
         String numa = reader.readLine();
 
         ReadCurrenciesFile.setPathc(numa);
-        Inquire inquire = new Inquire();
-        inquire.setInquir(String.format(new String(ApiBittrex.getmarketsummary),ReadCurrenciesFile.readCurrenciesFile().get(0)));
+        ListCurrencies.addCurrenciesList(ReadCurrenciesFile.readCurrenciesFile());
+        List<Flows> list = new ArrayList<Flows>();
 
-        inquire.respons();
+        for (int i = 0; i<20;i++){
+            list.add(new Flows());
+            list.get(i).start();
+            Thread.sleep(1000);
+        }
 
-        String result = inquire.getResult().substring(4,inquire.getResult().length());
-        ParseResult parseResult = new ParseResult();
-        parseResult.setText(result);
-
-        System.out.println(parseResult.BaseVolume());
     }
 }
