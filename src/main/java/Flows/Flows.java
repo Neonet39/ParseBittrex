@@ -5,6 +5,7 @@ import Check.FolowsCheck;
 import Inquire.Inquire;
 import ParseResult.ParseResult;
 import Structur.ListCurrencies;
+import Structur.OperatingList;
 
 /**
  * Created by Evgeny on 03.09.2017.
@@ -30,6 +31,7 @@ public class Flows extends Thread {
 
 
                 if (valuePars != null&&valuePars<301) {
+                    OperatingList.addOperatingList(param,valuePars);
                     FolowsCheck folowsCheck = new FolowsCheck(param, parseResult.BaseVolume());
                     folowsCheck.check();
 

@@ -24,20 +24,18 @@ public class FolowsCheck{
         if(valueStatisticList!=null){
 
             Double valueOperatingList = OperatingList.valueOperatingList(name);
-            if(valueOperatingList!=null){
+
                 Double difference = valueOperatingList - valueStatisticList;
-                 if(difference>2&&difference<11){
+                 if(difference>1&&difference<11){
                      System.out.println("Event found: "+name+" "+value);
                  }
 
                  StatisticList.addStatisticList(name,value);
-            }else {
-                OperatingList.addOperatingList(name,value);
-            }
+
         }else {
             StatisticList.addStatisticList(name,value);
         }
-        System.out.println(StatisticList.Size());
+
     }
 
 }
